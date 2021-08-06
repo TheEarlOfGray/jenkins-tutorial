@@ -1,14 +1,12 @@
 pipeline{
         agent any
+        environment{
+                DHL = credentials("DOCKERHUB_LOGIN")
+        }
         stages{
-            stage('Make Directory'){
+            stage('Debug'){
                 steps{
-                    sh "mkdir ~/jenkins-tutorial-test"
-                }
-            }
-            stage('Make Files'){
-                steps{
-                    sh "touch ~/jenkins-tutorial-test/file1 ~/jenkins-tutorial-test/file2"
+                        sh "docker login -u ${DHL_USR} -p ${DHL_PSW}"
                 }
             }
         }
